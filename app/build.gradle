@@ -79,6 +79,7 @@ android {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/services/javax.annotation.processing.Processor'
+        exclude 'META-INF/rxjava.properties'
         return true
     }
 
@@ -96,7 +97,7 @@ kapt {
 def supportVers = '25.1.0'
 def retrofitVers = '2.1.0'
 def okHttpVers = '3.4.1'
-def jacksonVers = '2.8.3'
+def jacksonVers = '2.8.4'
 def autoValueVers = '1.3'
 def daggerVers = '2.7'
 def rxVers = '2.0.1'
@@ -112,6 +113,7 @@ dependencies {
     // Android support
     compile "com.android.support:appcompat-v7:$supportVers"
     compile "com.android.support:design:$supportVers"
+    compile 'com.android.support:multidex:1.0.1'
 
     kapt "com.android.databinding:compiler:$androidPluginVersion"
 
@@ -128,12 +130,12 @@ dependencies {
     compile "io.reactivex.rxjava2:rxjava:$rxVers"
     compile "io.reactivex.rxjava2:rxandroid:$rxVers"
     compile 'com.jakewharton.rxbinding:rxbinding-appcompat-v7:0.4.0'
-    compile "com.github.akarnokd:rxjava2-interop:0.6.2" // converter rxJava 1.x <-> 2.x
 
     // Jackson parser
     compile "com.fasterxml.jackson.core:jackson-core:$jacksonVers"
     compile "com.fasterxml.jackson.core:jackson-annotations:$jacksonVers"
     compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVers"
+    compile "com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVers"
 
     // Dagger
     compile "com.google.dagger:dagger:$daggerVers"
@@ -159,6 +161,9 @@ dependencies {
 
     // logging
     compile 'com.jakewharton.timber:timber:4.3.1'
+
+    // Java 8 streams compatible
+    compile 'com.annimon:stream:1.1.2'
 
     // UI
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'

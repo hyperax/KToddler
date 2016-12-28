@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ru.ktoddler">
 
-    <!--API, firebase analytics-->
+    <!-- API, firebase analytics -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Splash">
-        <activity android:name=".view.activity.MainActivity">
+        <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
