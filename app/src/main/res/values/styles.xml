@@ -1,11 +1,50 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- colorPrimary is used for the default action bar background -->
+        <item name="colorPrimary">@color/primary</item>
+
+        <!-- colorPrimaryDark is used for the status bar -->
+        <item name="colorPrimaryDark">@color/primaryDark</item>
+
+        <!-- colorAccent is used as the default value for colorControlActivated, which is used to tint widgets -->
+        <item name="colorAccent">@color/accent</item>
+
+        <!-- You can also set colorControlNormal, colorControlActivated
+             colorControlHighlight, and colorSwitchThumbNormal. -->
+
+        <!--<item name="android:textViewStyle">@style/AppTheme.TextView</item>-->
+        <!--<item name="android:buttonStyle">@style/AppTheme.Button</item>-->
+
+        <!--<item name="android:textColorPrimary">@color/textcolor_primary</item>-->
+        <!--<item name="android:textColorHint">@color/textcolor_hint</item>-->
+        <!--<item name="android:editTextColor">@color/textcolor_primary</item>-->
+        <!--<item name="android:textColorPrimary">@color/textcolor_primary</item>-->
+        <!--<item name="android:textColorSecondary">@color/textcolor_primary</item>-->
+        <!--<item name="android:textColorTertiary">@color/textcolor_primary</item>-->
+        <!--<item name="android:textColorPrimaryInverse">@color/textcolor_primary</item>-->
+        <!--<item name="android:textColorSecondaryInverse">@color/textcolor_primary</item>-->
+        <!--<item name="android:textColorTertiaryInverse">@color/textcolor_primary</item>-->
+
+        <item name="alertDialogTheme">@style/AppDialogTheme</item>
+
+        <item name="windowActionModeOverlay">true</item>
+        <item name="android:windowContentTransitions" tools:ignore="NewApi">true</item>
     </style>
+
+    <style name="AppTheme.Splash" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/bg_splash</item>
+    </style>
+
+    <style name="AppDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primaryDark</item>
+        <item name="colorAccent">@color/accent</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

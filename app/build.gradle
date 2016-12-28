@@ -6,7 +6,7 @@ fileTree('scripts').each { apply from: "${it}" }
 
 def API = 25
 def minAPI = 16
-def appId = 'ru.toddler'
+def appId = 'ru.ktoddler'
 def appVersionCode = gitCommitCount()
 def appVersionName = "1.0.0.$appVersionCode"
 
