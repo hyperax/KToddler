@@ -72,10 +72,9 @@ abstract class BaseActivity : AppCompatActivity(), BaseFragment.TitleUpdateListe
     }
 
     override fun updateTitleRequest(fragment: BaseFragment): Boolean {
-        val title = fragment.title
-        if (title != null) {
+        fragment.getTitle()?.let {
             supportActionBar?.let {
-                it.title = title
+                it.title = fragment.getTitle()
                 return true
             }
         }
