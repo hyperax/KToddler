@@ -139,7 +139,7 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected AppComponent getAppComponent() {
-        return ((BaseActivity) getActivity()).getAppComponent();
+        return ((BaseActivity) getActivity()).provideAppComponent();
     }
 
     protected <T extends DialogFragment> void showDialog(@NonNull T dialog) {
