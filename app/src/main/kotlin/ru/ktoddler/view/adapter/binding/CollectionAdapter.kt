@@ -11,7 +11,7 @@ abstract class CollectionAdapter<ITEM, VH : RecyclerView.ViewHolder> : RecyclerV
     abstract fun updateItems(newItems: List<ITEM>?)
 
     protected fun updateList(newItems: List<ITEM>?, diffCallback: DiffUtil.Callback) {
-        this.items = newItems?: Collections.emptyList()
+        this.items = newItems ?: Collections.emptyList()
 
         val diffResult = DiffUtil.calculateDiff(diffCallback)
         diffResult.dispatchUpdatesTo(this)

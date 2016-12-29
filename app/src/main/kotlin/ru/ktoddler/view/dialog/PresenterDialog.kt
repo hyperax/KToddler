@@ -11,7 +11,7 @@ import ru.ktoddler.view.notification.Message
 
 abstract class PresenterDialog<out P : Presenter<V>, V : View> : BaseDialogFragment(), View {
 
-    protected abstract val presenter: P
+    protected abstract fun presenter(): P
 
     protected abstract fun fetchView(): V
 
@@ -23,7 +23,7 @@ abstract class PresenterDialog<out P : Presenter<V>, V : View> : BaseDialogFragm
 
     override fun onStart() {
         super.onStart()
-        presenter.bindView(fetchView())
+        presenter().bindView(fetchView())
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {
@@ -32,7 +32,7 @@ abstract class PresenterDialog<out P : Presenter<V>, V : View> : BaseDialogFragm
     }
 
     override fun onStop() {
-        presenter.unbindView(fetchView())
+        presenter().unbindView(fetchView())
         super.onStop()
     }
 
@@ -60,7 +60,7 @@ abstract class PresenterDialog<out P : Presenter<V>, V : View> : BaseDialogFragm
     }
 
     override fun onFinish() {
-        NpeUtils.call(presenter, Consumer<P> { p -> p.onFinish() })
+        NpeUtils.call(presenter(), Consumer<P> { p -> p.onFinish() })
         super.onFinish()
     }
 }

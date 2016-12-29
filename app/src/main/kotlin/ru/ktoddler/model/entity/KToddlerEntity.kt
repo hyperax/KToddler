@@ -6,7 +6,7 @@ import ru.ktoddler.model.entity.contract.Contract
 class KToddlerEntity {
 
     @Column(Contract.ID)
-    var id: Long? = null
+    var id: Long = 0
 
     @Column(Contract.KToddlerEntity.NAME)
     var name = ""

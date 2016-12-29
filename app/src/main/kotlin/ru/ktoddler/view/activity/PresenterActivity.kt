@@ -10,7 +10,7 @@ import ru.ktoddler.view.notification.Message
 
 abstract class PresenterActivity<out P : Presenter<V>, V : View> : BaseActivity(), View {
 
-    protected abstract val presenter: P
+    protected abstract fun getPresenter(): P
 
     protected abstract fun fetchView(): V
 
@@ -18,7 +18,7 @@ abstract class PresenterActivity<out P : Presenter<V>, V : View> : BaseActivity(
 
     public override fun onStart() {
         super.onStart()
-        presenter.bindView(fetchView())
+        getPresenter().bindView(fetchView())
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -27,7 +27,7 @@ abstract class PresenterActivity<out P : Presenter<V>, V : View> : BaseActivity(
     }
 
     public override fun onStop() {
-        presenter.unbindView(fetchView())
+        getPresenter().unbindView(fetchView())
         super.onStop()
     }
 
@@ -55,7 +55,7 @@ abstract class PresenterActivity<out P : Presenter<V>, V : View> : BaseActivity(
     }
 
     override fun onFinish() {
-        NpeUtils.call(presenter, Consumer<P> { p -> p.onFinish() })
+        NpeUtils.call(getPresenter(), Consumer<P> { p -> p.onFinish() })
         super.onFinish()
     }
 }

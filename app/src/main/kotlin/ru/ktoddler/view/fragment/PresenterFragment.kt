@@ -18,13 +18,13 @@ abstract class PresenterFragment<out P : Presenter<V>, V : View> : BaseFragment(
         arguments = Bundle() // prevent NPE when getting args inside fragment's lifecycle
     }
 
-    protected abstract val presenter: P
+    protected abstract fun presenter(): P
 
     protected abstract fun fetchView(): V
 
     override fun onStart() {
         super.onStart()
-        presenter.bindView(fetchView())
+        presenter().bindView(fetchView())
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {
@@ -33,7 +33,7 @@ abstract class PresenterFragment<out P : Presenter<V>, V : View> : BaseFragment(
     }
 
     override fun onStop() {
-        presenter.unbindView(fetchView())
+        presenter().unbindView(fetchView())
         super.onStop()
     }
 
@@ -61,7 +61,7 @@ abstract class PresenterFragment<out P : Presenter<V>, V : View> : BaseFragment(
     }
 
     override fun onFinish() {
-        NpeUtils.call(presenter, Consumer<P> { p -> p.onFinish() })
+        NpeUtils.call(presenter(), Consumer<P> { p -> p.onFinish() })
         super.onFinish()
     }
 }

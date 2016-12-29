@@ -6,14 +6,12 @@ import android.support.annotation.LayoutRes
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
-import ru.ktoddler.util.NpeUtils
-
 abstract class CollectionBindingAdapter<ITEM, BINDING : ViewDataBinding>
 (@LayoutRes private val layoutResourceId: Int) : CollectionAdapter<ITEM, BindingViewHolder<BINDING>>() {
 
     override var items: List<ITEM>
-        get() = NpeUtils.getNonNull(items)
-        set(value: List<ITEM>) {
+        get() = items
+        set(value) {
             super.items = value
         }
 
