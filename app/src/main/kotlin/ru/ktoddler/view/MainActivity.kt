@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        notifications.showToast(Message.alert("Toast message"))
-        notifications.showSnackbar(this, null, Message.alert("Snackbar message"))
+        notifications.showToast(Message.alert("Toast message 1"))
+        notifications.showSnackbar(this, null, Message.alert("Snackbar message 2"))
     }
 }
