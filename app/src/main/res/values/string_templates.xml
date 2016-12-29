@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="group_title_pattern" translatable="false">%1$s (%2$s)</string> <!-- "Deserts (15 pos.)" -->
+    <string name="cost_pattern" translatable="false">%1$s %2$s</string> <!-- "15000 $" -->
+    <string name="back_symbol" translatable="false">←</string>
+    <string name="back_symbol_with_definition" translatable="false">← %1$s</string>
+    <string name="two_line_pattern" translatable="false">%1$s\n%2$s</string>
+    <string name="pattern_definition" translatable="false">%1$s: %2$s</string>
+</resources>

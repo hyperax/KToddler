@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">KToddler</string>
+    <string name="error_unknown_with_description">Unknown error: %1$s</string>
 </resources>

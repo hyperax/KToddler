@@ -6,6 +6,7 @@ import ru.ktoddler.di.module.*
 import ru.ktoddler.di.scope.PerApplication
 import ru.ktoddler.view.MainActivity
 import ru.ktoddler.view.activity.BaseActivity
+import ru.ktoddler.view.dialog.BaseDialogFragment
 import ru.ktoddler.view.fragment.BaseFragment
 
 @PerApplication
@@ -20,5 +21,7 @@ interface AppComponent {
     fun inject(mainActivity: MainActivity)
 
     fun inject(baseFragment: BaseFragment)
+
+    fun inject(baseDialogFragment: BaseDialogFragment)
 
 }

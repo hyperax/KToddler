@@ -56,7 +56,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseFragment.TitleUpdateListe
         super.onDestroy()
     }
 
-    protected fun onFinish() {}
+    protected open fun onFinish() {}
 
     protected fun replaceFragment(@IdRes layoutId: Int, fragment: Fragment) {
         supportFragmentManager.beginTransaction()

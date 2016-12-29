@@ -98,7 +98,7 @@ abstract class BaseFragment : Fragment() {
         super.onDestroyView()
     }
 
-    protected fun onFinish() {}
+    protected open fun onFinish() {}
 
     fun onBackPressed(): Boolean {
         return false
