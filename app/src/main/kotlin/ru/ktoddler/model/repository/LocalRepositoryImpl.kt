@@ -19,32 +19,27 @@ import javax.inject.Inject
 class LocalRepositoryImpl
 @Inject
 constructor(private val sql: SQLiteDatabase) : LocalRepository {
-
-    private val db: DatabaseCompartment
+    private val db: DatabaseCompartment = CupboardFactory.cupboard().withDatabase(sql)
 
     private val changesBus = PublishSubject.create<Class<*>>()
-
-    init {
-        db = CupboardFactory.cupboard().withDatabase(sql)
-    }
 
     private fun onDataChanged(entityClass: Class<*>) {
         changesBus.onNext(entityClass)
     }
 
-    override fun <T> put(entities: List<T>) {
+    override fun <T : Any> put(entities: List<T>) {
         if (!NpeUtils.isEmpty(entities)) {
             db.put(entities)
             onDataChanged(NpeUtils.getComponentClass(entities)!!)
         }
     }
 
-    override fun <T> get(entity: Class<T>): List<T> {
+    override fun <T : Any> get(entity: Class<T>): List<T> {
         val query = db.query(entity)
         return query.list()
     }
 
-    override fun <T> get(entityClass: Class<T>, id: Long): Optional<T> {
+    override fun <T : Any> get(entityClass: Class<T>, id: Long): Optional<T> {
         return Optional.ofNullable(db.get(entityClass, id))
     }
 
@@ -65,7 +60,7 @@ constructor(private val sql: SQLiteDatabase) : LocalRepository {
         sql.endTransaction()
     }
 
-    override fun <T> delete(entityClass: Class<T>): Int {
+    override fun <T : Any> delete(entityClass: Class<T>): Int {
         val deletedCount = db.delete(entityClass, null)
         if (deletedCount > 0) {
             onDataChanged(entityClass)
@@ -73,7 +68,7 @@ constructor(private val sql: SQLiteDatabase) : LocalRepository {
         return deletedCount
     }
 
-    override fun <T : Any?> delete(entity: Class<T>, vararg ids: Long?): Int {
+    override fun <T : Any> delete(entity: Class<T>, vararg ids: Long): Int {
         val deletedCount = db.delete(entity, `in`(Contract.ID, ids))
         if (deletedCount > 0) {
             onDataChanged(entity)

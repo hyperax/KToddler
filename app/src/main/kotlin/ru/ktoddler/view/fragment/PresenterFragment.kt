@@ -10,7 +10,7 @@ import ru.ktoddler.view.View
 import ru.ktoddler.view.dialog.SpinnerProgressDialog
 import ru.ktoddler.view.notification.Message
 
-abstract class PresenterFragment<P : Presenter<V>, V : View> : BaseFragment(), View {
+abstract class PresenterFragment<out P : Presenter<V>, V : View> : BaseFragment(), View {
 
     private var dialog: SpinnerProgressDialog? = null
 

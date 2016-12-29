@@ -17,7 +17,10 @@ import javax.inject.Inject
 @PerApplication
 class ToddlerSQLiteOpenHelper
 @Inject
-constructor(context: Context) : SQLiteOpenHelper(context, ToddlerSQLiteOpenHelper.DB_FILE, null, ToddlerSQLiteOpenHelper.DB_VERSION) {
+constructor(context: Context) : SQLiteOpenHelper(context,
+        ToddlerSQLiteOpenHelper.DB_FILE,
+        null,
+        ToddlerSQLiteOpenHelper.DB_VERSION) {
 
     override fun onCreate(db: SQLiteDatabase) {
         cupboard().withDatabase(db).createTables()
