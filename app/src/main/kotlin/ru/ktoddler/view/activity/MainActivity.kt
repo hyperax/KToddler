@@ -6,6 +6,7 @@ import ru.ktoddler.databinding.ActMainBinding
 import ru.ktoddler.presenter.KToddlerPresenter
 import ru.ktoddler.view.KToddlerView
 import ru.ktoddler.view.model.KToddlerVM
+import java.util.*
 import javax.inject.Inject
 
 open class MainActivity : PresenterActivity<KToddlerPresenter, KToddlerView>(), KToddlerView {
@@ -20,6 +21,10 @@ open class MainActivity : PresenterActivity<KToddlerPresenter, KToddlerView>(), 
         provideAppComponent().inject(this)
         binding = bindView(R.layout.act_main)
         binding.loadDistance.setOnClickListener({ view -> getPresenter().loadDistance() })
+        val dP = binding.datePicker
+        binding.getTemperature.setOnClickListener({ view ->
+            getPresenter().loadWeatherHistory(dP.year, dP.month, dP.dayOfMonth) })
+        dP.maxDate = Date().time
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setTitle(R.string.app_name)
     }

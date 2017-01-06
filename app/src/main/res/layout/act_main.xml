@@ -46,6 +46,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="load distance to Praga"/>
+
+            <Button
+                android:id="@+id/getTemperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="get temperature in SPb at"/>
+
+            <DatePicker
+                android:id="@+id/datePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
         </LinearLayout>
 
     </android.support.design.widget.CoordinatorLayout>

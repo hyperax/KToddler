@@ -23,6 +23,11 @@ constructor(context: Context,
     private val API_URL = "https://maps.googleapis.com"
     private var routeRequestInProgress = false
 
+    private val WEATHER_API_URL = "http://www.metaweather.com"
+    private var weatherRequestInProgress = false
+
+    private val SPbCityCode: String = "2123260";
+
     init {
         if (uiPrefs.firstRun()) {
             val toddler = KToddlerEntity()
@@ -55,6 +60,24 @@ constructor(context: Context,
         }
     }
 
+    fun loadWeatherHistory(year: Int, month: Int, day: Int) {
+        if (!weatherRequestInProgress) {
+            weatherRequestInProgress = true
+            networkRepo.getWeatherHistoryApi(WEATHER_API_URL).getWeatherHistory(SPbCityCode,
+                    year.toString(), month.inc().toString(), day.toString())
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doAfterTerminate { weatherRequestInProgress = false }
+                    .subscribe({ weatherResponse ->
+                        val msg : String = if (weatherResponse.isEmpty()) "no weather data"
+                        else weatherResponse.get(0).temp.toString();
+                        getView()
+                                .ifPresent { v -> v.showInfo(msg) }
+                    }
+                    ) { throwable -> this@KToddlerPresenter.handleError(throwable) }
+        }
+    }
+
     fun loadDistance() {
         if (!routeRequestInProgress) {
             routeRequestInProgress = true
@@ -63,8 +86,10 @@ constructor(context: Context,
                     .observeOn(AndroidSchedulers.mainThread())
                     .doAfterTerminate { routeRequestInProgress = false }
                     .subscribe({ routeResponse ->
+                        val msg : String = if (routeResponse.routes.isEmpty()) "no routing data, maybe need api key?"
+                            else routeResponse.routes[0].legs[0].distance.text;
                         getView()
-                                .ifPresent { v -> v.showInfo(routeResponse.routes[0].legs[0].distance.text) }
+                                .ifPresent { v -> v.showInfo(msg) }
                     }
                     ) { throwable -> this@KToddlerPresenter.handleError(throwable) }
         }
