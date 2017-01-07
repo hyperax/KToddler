@@ -12,6 +12,10 @@ import ru.ktoddler.view.KToddlerView
 import ru.ktoddler.view.model.KToddlerVM
 import javax.inject.Inject
 
+private const val API_URL = "https://maps.googleapis.com"
+private const val WEATHER_API_URL = "http://www.metaweather.com"
+private const val SPbCityCode: String = "2123260";
+
 @PerApplication
 class KToddlerPresenter
 @Inject
@@ -20,13 +24,9 @@ constructor(context: Context,
             private val localRepo: LocalRepository,
             private val networkRepo: ApiProvider) : BasePresenter<KToddlerView>(context) {
 
-    private val API_URL = "https://maps.googleapis.com"
+
     private var routeRequestInProgress = false
-
-    private val WEATHER_API_URL = "http://www.metaweather.com"
     private var weatherRequestInProgress = false
-
-    private val SPbCityCode: String = "2123260";
 
     init {
         if (uiPrefs.firstRun()) {
