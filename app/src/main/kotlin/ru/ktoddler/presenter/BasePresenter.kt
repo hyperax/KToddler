@@ -41,7 +41,7 @@ abstract class BasePresenter<V : View>(private val context: Context) : Presenter
         if (throwable != null) {
             val mes: String
             if (throwable is KToddlerException) {
-                mes = getString(R.string.pattern_definition, throwable.title, throwable.details)
+                mes = getString(R.string.pattern_definition, throwable.title ?: "", throwable.details ?: "")
             } else {
                 val details = if (NpeUtils.isEmpty(throwable.message)) throwable.toString() else throwable.message
                 mes = getString(R.string.error_unknown_with_description, details as Any)
