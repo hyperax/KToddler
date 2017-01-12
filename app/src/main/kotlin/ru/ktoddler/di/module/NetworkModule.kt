@@ -1,5 +1,6 @@
 package ru.ktoddler.di.module
 
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.fasterxml.jackson.databind.ObjectMapper
 import dagger.Module
 import dagger.Provides
@@ -10,6 +11,8 @@ import retrofit2.converter.jackson.JacksonConverterFactory
 import ru.ktoddler.BuildConfig
 import ru.ktoddler.di.scope.PerApplication
 import java.util.concurrent.TimeUnit
+
+
 
 @Module
 class NetworkModule {
@@ -31,6 +34,8 @@ class NetworkModule {
         if (BuildConfig.DEBUG) {
             builder.addInterceptor(HttpLoggingInterceptor()
                     .setLevel(HttpLoggingInterceptor.Level.BODY))
+
+            builder.addNetworkInterceptor(StethoInterceptor())
         }
 
         return builder.build()
